@@ -1,3 +1,4 @@
+import { type } from 'os'
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
@@ -9,6 +10,12 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'Keep the title short!!'
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
     }),
     defineField({
       name: 'slug',
@@ -19,6 +26,13 @@ export default defineType({
         maxLength: 96,
       },
     }),
+    // Definiendo múltiples autores
+    // defineField({
+    //   name: 'author',
+    //   title: 'Author',
+    //   type: 'array',
+    //   of: [{type: 'reference', to: {type: 'author'}}],
+    // }),
     defineField({
       name: 'author',
       title: 'Author',

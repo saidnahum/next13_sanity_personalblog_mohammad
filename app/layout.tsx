@@ -1,5 +1,7 @@
+import Header from '@/components/Header';
 import './globals.css'
 import { Pangolin, Montserrat, Poppins } from 'next/font/google'
+import Footer from '@/components/Footer';
 
 const pangolin = Pangolin({
   subsets: ['latin'],
@@ -20,7 +22,7 @@ const popins = Poppins({
 });
 
 export const metadata = {
-  title: 'Personal Blog',
+  title: 'My Blog | Explore the new horizon',
   description: 'Awesome Personal Blog made with Next JS and Sanity',
 }
 
@@ -30,8 +32,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${pangolin.variable} ${montserrat.variable} ${popins.variable}`}>{children}</body>
+    <html lang="en" >
+      <body className={`${pangolin.variable} ${montserrat.variable} ${popins.variable}`}>
+        {/* <Header/> */}
+        {children}
+        {/* <Footer/> */}
+      </body>
     </html>
   )
 }
