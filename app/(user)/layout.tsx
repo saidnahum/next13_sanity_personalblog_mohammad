@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import './globals.css'
+import '../globals.css'
 import { Pangolin, Montserrat, Poppins } from 'next/font/google'
 import Footer from '@/components/Footer';
 
@@ -34,9 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en" >
       <body className={`${pangolin.variable} ${montserrat.variable} ${popins.variable}`}>
-        {/* <Header/> */}
+        <Header/>
         {children}
-        {/* <Footer/> */}
+        <Footer/>
       </body>
     </html>
   )

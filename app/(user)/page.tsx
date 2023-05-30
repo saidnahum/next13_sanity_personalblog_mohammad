@@ -3,13 +3,13 @@ import BannerBottom from '@/components/BannerBottom'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { groq } from 'next-sanity'
-import { sanityClient, urlFor } from '../lib/sanity';
+import { sanityClient, urlFor } from '../../lib/sanity';
 import { Post } from '@/typings'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const query = groq`
-  *[_type == 'post']{
+  *[_type == 'post'] | order(_createdAt desc){
     _id,
     title,
     author -> {
@@ -25,13 +25,13 @@ const query = groq`
 const Home = async () => {
 
   const posts:[Post] = await sanityClient.fetch(query);
-  console.log(posts[0])
+  //console.log(posts[0])
   
   return (
     <div>
       <main className="font-bodyFont">
         {/* ============ Header Start here ============ */}
-        <Header />
+        {/* <Header /> */}
         {/* ============ Header End here ============== */}
         {/* ============ Banner Start here ============ */}
         <Banner />
@@ -80,7 +80,7 @@ const Home = async () => {
         </div>
         {/* ============ Post Part End here =========== */}
         {/* ============ Footer Start here============= */}
-        <Footer />
+        {/* <Footer /> */}
         {/* ============ Footer End here ============== */}
       </main>
     </div>

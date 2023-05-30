@@ -83,11 +83,27 @@ export default defineType({
         }
       ]
     }),
-    {
-      type: 'code'
-    },
+    defineField({
+      type: 'code',
+      name: 'myCodeField',
+      title: 'Code Block',
+      // options: {
+      //   language: 'javascript',
+      //   languageAlternatives: [
+      //     {title: 'Javascript', value: 'javascript'},
+      //     {title: 'HTML', value: 'html'},
+      //     {title: 'CSS', value: 'css'},
+      //   ],
+      //   //withFilename: true,
+      // },
+    }),
     {
       type: 'youtube'
-    }
+    },
+    defineField({
+      name: 'chart',
+      title: 'Chart',
+      type: 'table',
+    }),
   ],
 });
