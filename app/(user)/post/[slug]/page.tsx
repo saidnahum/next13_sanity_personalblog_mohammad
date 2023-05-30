@@ -43,6 +43,7 @@ const query = groq`
       name,
       image
     },
+    "comments": *[_type == 'comment' && post._ref == ^._id && approved == true],
     description,
     mainImage,
     slug
@@ -96,8 +97,8 @@ const PostPage = async ({ params: { slug } }: Props) => {
                 h4: (props: any) => (<h4 className="text-lg font-bold font-titleFont" {...props} />),
                 h5: (props: any) => (<h5 className="text-md font-bold font-titleFont" {...props} />),
                 h6: (props: any) => (<h6 className="text-sm italic font-titleFont" {...props} />),
-                blockquote: (props: any) => (<blockquote className="bg-gray-100 py-5 px-3 border-gray-500 rounded-md not-italic" {...props}/>),
-                code: (props: any) => (<span className="bg-gray-300 text-violet-500 rounded-sm px-2 py-[3px]" {...props}/>),
+                blockquote: (props: any) => (<blockquote className="bg-gray-100 py-5 px-3 border-gray-500 rounded-md not-italic" {...props} />),
+                code: (props: any) => (<span className="bg-gray-300 text-violet-500 rounded-sm px-2 py-[3px]" {...props} />),
                 //li: ({children}: any) => (<li className="ml-4 list-disc">{children}</li>),
                 link: ({ href, children }: any) => (
                   <Link href={href} target="_blank" className="text-cyan-500 hover:underline">
@@ -108,26 +109,45 @@ const PostPage = async ({ params: { slug } }: Props) => {
                   <CodeBlock codeText={props.code} language={props.language} />
                 ),
                 youtube: (props: any) => (
-                  <YoutubeBlock props={props}/>
+                  <YoutubeBlock props={props} />
                 ),
                 chart: (props: any) => (
-                  <Table props={props}/>
+                  <Table props={props} />
                 )
               }}
             />
           </div>
         </article>
 
-        <hr className="my-5 max-w-lg mx-auto border-[1px] border-secondaryColor"/>
+        <hr className="my-5 max-w-lg mx-auto border-[1px] border-secondaryColor" />
 
         <div>
           <p className="text-xs text-secondaryColor uppercase font-titleFont font-bold">Enjoy this article?</p>
           <h3 className="font-titleFont text-3xl font-bold">Leave a Comment below!</h3>
-          <hr className="py-3 mt-2"/>
+          <hr className="py-3 mt-2" />
 
           {/* form */}
-          <Form postId={post._id}/>
+          <Form postId={post._id} />
         </div>
+        {/* Comments */}
+        {
+          post.comments.length > 0 && (
+            <div className="w-full flex flex-col p-10 my-10 mx-auto shadow-bgColor shadow-lg space-y-2">
+              <h3 className="text-3xl font-titleFont font-semibold">Comments</h3>
+              <hr />
+              {
+                post.comments.map((comment) => (
+                  <div key={comment._id}>
+                    <p>
+                      <span className="text-secondaryColor"> {comment.name}</span>{" "}
+                      {comment.comment}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          )
+        }
       </div>
     </div>
   )

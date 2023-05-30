@@ -9,7 +9,7 @@ const client = createClient({
   useCdn: false
 });
 
-export async function POST(request) {
+export async function POST(request: Request) {
   const { _id, name, email, comment } = await request.json();
 
   try {
