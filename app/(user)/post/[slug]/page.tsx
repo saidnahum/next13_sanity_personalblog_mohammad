@@ -43,7 +43,7 @@ const query = groq`
       name,
       image
     },
-    "comments": *[_type == 'comment' && post._ref == ^._id && approved == true],
+    "comments": *[_type == 'comment' && post._ref == ^._id && approved == true] | order(_createdAt asc),
     description,
     mainImage,
     slug
@@ -122,9 +122,9 @@ const PostPage = async ({ params: { slug } }: Props) => {
         <hr className="my-5 max-w-lg mx-auto border-[1px] border-secondaryColor" />
 
         <div>
-          <p className="text-xs text-secondaryColor uppercase font-titleFont font-bold">Enjoy this article?</p>
+          {/* <p className="text-xs text-secondaryColor uppercase font-titleFont font-bold">Enjoy this article?</p>
           <h3 className="font-titleFont text-3xl font-bold">Leave a Comment below!</h3>
-          <hr className="py-3 mt-2" />
+          <hr className="py-3 mt-2" /> */}
 
           {/* form */}
           <Form postId={post._id} />

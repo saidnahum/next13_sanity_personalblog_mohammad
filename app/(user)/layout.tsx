@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import '../globals.css'
 import { Pangolin, Montserrat, Poppins } from 'next/font/google'
 import Footer from '@/components/Footer';
+import Provider from '@/components/Provider';
 
 const pangolin = Pangolin({
   subsets: ['latin'],
@@ -34,9 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en" >
       <body className={`${pangolin.variable} ${montserrat.variable} ${popins.variable}`}>
-        <Header/>
-        {children}
-        <Footer/>
+        <Provider>
+          <Header />
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   )

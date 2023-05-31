@@ -41,7 +41,7 @@ const Home = async () => {
         </div>
         {/* ============ Banner-Bottom End here ======= */}
         {/* ============ Post Part Start here ========= */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 py-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 py-6 px-4">
           {
             posts.map(post => (
               <Link key={post._id} href={`/post/${post.slug.current}`}>
@@ -58,7 +58,7 @@ const Home = async () => {
                   
                   <div className='h-2/5 w-full flex flex-col justify-center'>
                     <div className='flex items-center justify-between px-4 py-1 border-b-[1px] border-b-gray-500'>
-                      <h1>{post.title}</h1>
+                      <h1 className='font-titleFont text-lg uppercase font-bold'>{post.title}</h1>
                       <Image
                         src={urlFor(post.author.image).url()}
                         alt='Profile picture'

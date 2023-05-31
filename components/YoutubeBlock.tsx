@@ -11,8 +11,7 @@ const YoutubeBlock = ({ props }: any) => {
 
   return (
     <div className=''>
-      <LiteYouTubeEmbed id={id}
-      />
+      <LiteYouTubeEmbed id={id} title='Yotube'/>
     </div>
   )
 }
