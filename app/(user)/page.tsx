@@ -22,6 +22,24 @@ const query = groq`
   }
 `;
 
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const queryParams = groq`
+    *[_type == 'post']
+    {
+      slug
+    }
+  `;
+
+  const slugs: Post[] = await sanityClient.fetch(queryParams);
+  const slugRoutes = slugs.map((slug) => slug.slug.current)
+
+  return slugRoutes.map((slug) => ({
+    slug
+  }))
+}
+
 const Home = async () => {
 
   const posts:[Post] = await sanityClient.fetch(query);
